@@ -55,15 +55,15 @@ done
 %install
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
 
-install -d %{buildroot}%{_localstatedir}/asterisk/sounds
+install -d %{buildroot}%{_localstatedir}/lib/asterisk/sounds
 
-cp -aRf * %{buildroot}%{_localstatedir}/asterisk/sounds/
+cp -aRf * %{buildroot}%{_localstatedir}/lib/asterisk/sounds/
 
 # cleanup
-rm -f %{buildroot}%{_localstatedir}/asterisk/sounds/CREDITS-asterisk-core-*-%{version}
+rm -f %{buildroot}%{_localstatedir}/lib/asterisk/sounds/CREDITS-asterisk-core-*-%{version}
 
 # make a file list
-find %{buildroot}%{_localstatedir}/asterisk/sounds -type f | sed -e "s|%{buildroot}||" | sed -e 's/^/%attr(0644,root,root) /' >> %{name}.filelist
+find %{buildroot}%{_localstatedir}/lib/asterisk/sounds -type f | sed -e "s|%{buildroot}||" | sed -e 's/^/%attr(0644,root,root) /' >> %{name}.filelist
 
 %clean
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
