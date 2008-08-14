@@ -3,8 +3,8 @@
 
 Summary:	French sound files for the Asterisk PBX and telephony application and toolkit
 Name:		asterisk-core-sounds-fr
-Version:	1.4.11
-Release:	%mkrel 2
+Version:	1.4.12
+Release:	%mkrel 1
 License:	BSD
 Group:		System/Servers
 URL:		http://www.asterisk.org/
@@ -19,7 +19,7 @@ Requires:	locales-fr
 Provides:	asterisk-core-sounds
 Conflicts:	asterisk-core-sounds-es asterisk-core-sounds-en
 BuildArch:	noarch
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Asterisk is an Open Source PBX and telephony development platform that can both
