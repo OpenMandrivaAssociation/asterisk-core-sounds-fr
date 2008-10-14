@@ -3,7 +3,7 @@
 
 Summary:	French sound files for the Asterisk PBX and telephony application and toolkit
 Name:		asterisk-core-sounds-fr
-Version:	1.4.12
+Version:	1.4.13
 Release:	%mkrel 1
 License:	BSD
 Group:		System/Servers
@@ -53,7 +53,7 @@ done
 %build
 
 %install
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
+rm -rf %{buildroot}
 
 install -d %{buildroot}%{_localstatedir}/lib/asterisk/sounds
 
@@ -66,10 +66,8 @@ rm -f %{buildroot}%{_localstatedir}/lib/asterisk/sounds/CREDITS-asterisk-core-*-
 find %{buildroot}%{_localstatedir}/lib/asterisk/sounds -type f | sed -e "s|%{buildroot}||" | sed -e 's/^/%attr(0644,root,root) /' >> %{name}.filelist
 
 %clean
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
+rm -rf %{buildroot}
 
 %files -f %{name}.filelist
 %defattr(-,root, root)
 %doc CREDITS-asterisk-core-*-%{version}
-
-
