@@ -3,21 +3,22 @@
 
 Summary:	French sound files for the Asterisk PBX and telephony application and toolkit
 Name:		asterisk-core-sounds-fr
-Version:	1.4.13
-Release:	%mkrel 2
-License:	BSD
+Version:	1.4.14
+Release:	%mkrel 1
+License:	Public Domain
 Group:		System/Servers
 URL:		http://www.asterisk.org/
 Source0:	http://ftp.digium.com/pub/telephony/sounds/%{name}-alaw-%{version}.tar.gz
 Source1:	http://ftp.digium.com/pub/telephony/sounds/%{name}-g722-%{version}.tar.gz
 Source2:	http://ftp.digium.com/pub/telephony/sounds/%{name}-g729-%{version}.tar.gz
 Source3:	http://ftp.digium.com/pub/telephony/sounds/%{name}-gsm-%{version}.tar.gz
-Source4:	http://ftp.digium.com/pub/telephony/sounds/%{name}-ulaw-%{version}.tar.gz
-Source5:	http://ftp.digium.com/pub/telephony/sounds/%{name}-wav-%{version}.tar.gz
+Source4:        http://ftp.digium.com/pub/telephony/sounds/%{name}-siren7-%{version}.tar.gz
+Source5:        http://ftp.digium.com/pub/telephony/sounds/%{name}-siren14-%{version}.tar.gz
+Source6:        http://ftp.digium.com/pub/telephony/sounds/%{name}-sln16-%{version}.tar.gz
+Source7:	http://ftp.digium.com/pub/telephony/sounds/%{name}-ulaw-%{version}.tar.gz
+Source8:	http://ftp.digium.com/pub/telephony/sounds/%{name}-wav-%{version}.tar.gz
 Requires:	asterisk
-Requires:	locales-fr
 Provides:	asterisk-core-sounds
-Conflicts:	asterisk-core-sounds-es asterisk-core-sounds-en
 BuildArch:	noarch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
@@ -33,11 +34,12 @@ IP telephony clients using the Inter-Asterisk eXchange protocol (e.g. gnophone
 or miniphone).
 
 This package contains freely usable recorded sounds that were meant to be used
-with Asterisk in the following formats: a-Law, G.722, G.729, GSM, mu-Law, WAV
+with Asterisk in the following formats: a-Law, G.722, G.729, GSM, Siren7, 
+Siren14, sln16, mu-Law, WAV
 
 %prep
 
-%setup -q -c -T -n asterisk-core-sounds-%{version} -a0 -a1 -a2 -a3 -a4 -a5
+%setup -q -c -T -n asterisk-core-sounds-%{version} -a0 -a1 -a2 -a3 -a4 -a5 -a6 -a7 -a8
 
 # fix dir perms
 find . -type d | xargs chmod 755
@@ -55,12 +57,12 @@ done
 %install
 rm -rf %{buildroot}
 
-install -d %{buildroot}%{_datadir}/asterisk/sounds
+install -d %{buildroot}%{_datadir}/asterisk/sounds/fr
 
-cp -aRf * %{buildroot}%{_datadir}/asterisk/sounds/
+cp -aRf * %{buildroot}%{_datadir}/asterisk/sounds/fr/
 
 # cleanup
-rm -f %{buildroot}%{_datadir}/asterisk/sounds/CREDITS-asterisk-core-*-%{version}
+rm -f %{buildroot}%{_datadir}/asterisk/sounds/*-asterisk-core-*-%{version}
 
 # make a file list
 find %{buildroot}%{_datadir}/asterisk/sounds -type f | sed -e "s|%{buildroot}||" | sed -e 's/^/%attr(0644,root,root) /' >> %{name}.filelist
@@ -70,4 +72,5 @@ rm -rf %{buildroot}
 
 %files -f %{name}.filelist
 %defattr(-,root, root)
-%doc CREDITS-asterisk-core-*-%{version}
+%doc CHANGES-asterisk-core-*-%{version} CREDITS-asterisk-core-*-%{version} 
+%doc LICENSE-asterisk-core-*-%{version}
