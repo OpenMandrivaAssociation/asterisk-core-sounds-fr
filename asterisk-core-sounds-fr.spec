@@ -4,7 +4,7 @@
 Summary:	French sound files for the Asterisk PBX and telephony application and toolkit
 Name:		asterisk-core-sounds-fr
 Version:	1.4.14
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	Public Domain
 Group:		System/Servers
 URL:		http://www.asterisk.org/
@@ -33,7 +33,7 @@ Asterisk talks to a variety of telephony hardware including BRI, PRI, POTS, and
 IP telephony clients using the Inter-Asterisk eXchange protocol (e.g. gnophone
 or miniphone).
 
-This package contains freely usable recorded sounds that were meant to be used
+This package contains freely usable music that were meant to be used
 with Asterisk in the following formats: a-Law, G.722, G.729, GSM, Siren7, 
 Siren14, sln16, mu-Law, WAV
 
@@ -57,20 +57,19 @@ done
 %install
 rm -rf %{buildroot}
 
-install -d %{buildroot}%{_datadir}/asterisk/sounds/fr
+install -d %{buildroot}/var/lib/asterisk/sounds/fr
 
-cp -aRf * %{buildroot}%{_datadir}/asterisk/sounds/fr/
+cp -aRf * %{buildroot}/var/lib/asterisk/sounds/fr/
 
 # cleanup
-rm -f %{buildroot}%{_datadir}/asterisk/sounds/*-asterisk-core-*-%{version}
+#rm -f %{buildroot}/var/lib/asterisk/sounds/*-asterisk-core-*-%{version}
 
 # make a file list
-find %{buildroot}%{_datadir}/asterisk/sounds -type f | sed -e "s|%{buildroot}||" | sed -e 's/^/%attr(0644,root,root) /' >> %{name}.filelist
+find %{buildroot}/var/lib/asterisk/sounds -type f | sed -e "s|%{buildroot}||" | sed -e 's/^/%attr(0644,root,root) /' >> %{name}.filelist
 
 %clean
 rm -rf %{buildroot}
 
 %files -f %{name}.filelist
 %defattr(-,root, root)
-%doc CHANGES-asterisk-core-*-%{version} CREDITS-asterisk-core-*-%{version} 
-%doc LICENSE-asterisk-core-*-%{version}
+%doc *-asterisk-core-*-%{version}
