@@ -3,8 +3,8 @@
 
 Summary:	French sound files for the Asterisk PBX and telephony application and toolkit
 Name:		asterisk-core-sounds-fr
-Version:	1.4.14
-Release:	%mkrel 2
+Version:	1.4.15
+Release:	%mkrel 1
 License:	Public Domain
 Group:		System/Servers
 URL:		http://www.asterisk.org/
